@@ -1,0 +1,21 @@
+from scapy.all import *
+
+def packet_analyzer(eth0):
+    """Captures and analyzes network packets on the specified interface.
+
+    Args:
+        interface (str): The network interface to capture packets on.
+    """
+    while True:
+      interface = eth0  
+      packet = sniff(iface=interface, count=10)  # Adjust count as needed
+
+    # Analyze and print packet information
+    for packet in packets:
+        print("-" * 40)
+        print("Packet Summary:")
+        print(f"Source IP: {packet[IP].src}")
+        print(f"Destination IP: {packet[IP].dst}")
+        print(f"Protocol: {packet.summary()}")
+        print(f"Payload: {packet[Raw].load}")
+        print("-" * 40)
